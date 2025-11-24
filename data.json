@@ -1,0 +1,30 @@
+{
+  "groups": {
+    "A": [
+      { "id": 1, "name": "Team A1" },
+      { "id": 2, "name": "Team A2" },
+      { "id": 3, "name": "Team A3" },
+      { "id": 4, "name": "Team A4" },
+      { "id": 5, "name": "Team A5" }
+    ],
+    "B": [
+      { "id": 6, "name": "Team B1" },
+      { "id": 7, "name": "Team B2" },
+      { "id": 8, "name": "Team B3" },
+      { "id": 9, "name": "Team B4" },
+      { "id": 10, "name": "Team B5" }
+    ]
+  },
+
+  "matches": {
+    "group": {
+      "A": [],
+      "B": []
+    },
+    "knockout": {
+      "semifinals": [],
+      "final": null,
+      "thirdPlace": null
+    }
+  }
+}
