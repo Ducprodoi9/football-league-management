@@ -1,53 +1,101 @@
 {
   "teams": [
-    { "id": 1, "name": "Team A1", "shortName": "A1", "group": "A" },
-    { "id": 2, "name": "Team A2", "shortName": "A2", "group": "A" },
-    { "id": 3, "name": "Team A3", "shortName": "A3", "group": "A" },
-    { "id": 4, "name": "Team A4", "shortName": "A4", "group": "A" },
-    { "id": 5, "name": "Team A5", "shortName": "A5", "group": "A" },
+    { "id": 1, "name": "FC QUẾ TỶ", "shortName": "QUE", "group": "A" },
+    { "id": 2, "name": "FC CLEAN ALL", "shortName": "CLA", "group": "A" },
+    { "id": 3, "name": "FC STAR", "shortName": "STA", "group": "A" },
+    { "id": 4, "name": "FC ANH EM", "shortName": "AE", "group": "A" },
+    { "id": 5, "name": "FC CHS YT2", "shortName": "YT2", "group": "A" },
 
-    { "id": 6, "name": "Team B1", "shortName": "B1", "group": "B" },
-    { "id": 7, "name": "Team B2", "shortName": "B2", "group": "B" },
-    { "id": 8, "name": "Team B3", "shortName": "B3", "group": "B" },
-    { "id": 9, "name": "Team B4", "shortName": "B4", "group": "B" },
-    { "id": 10, "name": "Team B5", "shortName": "B5", "group": "B" }
+    { "id": 6, "name": "FC NAM AN", "shortName": "NA", "group": "B" },
+    { "id": 7, "name": "FC KẺ DỀN", "shortName": "KD", "group": "B" },
+    { "id": 8, "name": "FC TIẾNG NGHỆ", "shortName": "TN", "group": "B" },
+    { "id": 9, "name": "FC STONES", "shortName": "STO", "group": "B" },
+    { "id": 10, "name": "FC 37P1", "shortName": "37P1", "group": "B" }
   ],
+
   "matches": [
-    { "id": 1, "stage": "GROUP", "group": "A", "round": 1, "homeTeamId": 2, "awayTeamId": 5, "date": "2025-01-01", "time": "19:00", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 2, "stage": "GROUP", "group": "A", "round": 1, "homeTeamId": 3, "awayTeamId": 4, "date": "2025-01-01", "time": "20:30", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    /* ----------------------------- BẢNG A ----------------------------- */
 
-    { "id": 3, "stage": "GROUP", "group": "A", "round": 2, "homeTeamId": 1, "awayTeamId": 5, "date": "2025-01-03", "time": "19:00", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 4, "stage": "GROUP", "group": "A", "round": 2, "homeTeamId": 2, "awayTeamId": 3, "date": "2025-01-03", "time": "20:30", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 1, "stage": "GROUP", "group": "A", "round": 1,
+      "homeTeamId": 1, "awayTeamId": 3, "date": "2025-01-01", "time": "19:00",
+      "stadium": "", "homeScore": 2, "awayScore": 1, "status": "FINISHED" },
 
-    { "id": 5, "stage": "GROUP", "group": "A", "round": 3, "homeTeamId": 1, "awayTeamId": 4, "date": "2025-01-05", "time": "19:00", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 6, "stage": "GROUP", "group": "A", "round": 3, "homeTeamId": 5, "awayTeamId": 3, "date": "2025-01-05", "time": "20:30", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 2, "stage": "GROUP", "group": "A", "round": 1,
+      "homeTeamId": 2, "awayTeamId": 4, "date": "2025-01-01", "time": "19:00",
+      "stadium": "", "homeScore": 2, "awayScore": 2, "status": "FINISHED" },
 
-    { "id": 7, "stage": "GROUP", "group": "A", "round": 4, "homeTeamId": 1, "awayTeamId": 3, "date": "2025-01-07", "time": "19:00", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 8, "stage": "GROUP", "group": "A", "round": 4, "homeTeamId": 4, "awayTeamId": 2, "date": "2025-01-07", "time": "20:30", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 3, "stage": "GROUP", "group": "A", "round": 2,
+      "homeTeamId": 3, "awayTeamId": 5, "date": "2025-01-02", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
 
-    { "id": 9, "stage": "GROUP", "group": "A", "round": 5, "homeTeamId": 1, "awayTeamId": 2, "date": "2025-01-09", "time": "19:00", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 10, "stage": "GROUP", "group": "A", "round": 5, "homeTeamId": 4, "awayTeamId": 5, "date": "2025-01-09", "time": "20:30", "stadium": "Sân A", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 4, "stage": "GROUP", "group": "A", "round": 2,
+      "homeTeamId": 1, "awayTeamId": 4, "date": "2025-01-02", "time": "19:00",
+      "stadium": "", "homeScore": 2, "awayScore": 2, "status": "FINISHED" },
 
-    { "id": 11, "stage": "GROUP", "group": "B", "round": 1, "homeTeamId": 7, "awayTeamId": 10, "date": "2025-01-02", "time": "19:00", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 12, "stage": "GROUP", "group": "B", "round": 1, "homeTeamId": 8, "awayTeamId": 9, "date": "2025-01-02", "time": "20:30", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 5, "stage": "GROUP", "group": "A", "round": 3,
+      "homeTeamId": 3, "awayTeamId": 2, "date": "2025-01-03", "time": "19:00",
+      "stadium": "", "homeScore": 3, "awayScore": 3, "status": "FINISHED" },
 
-    { "id": 13, "stage": "GROUP", "group": "B", "round": 2, "homeTeamId": 6, "awayTeamId": 10, "date": "2025-01-04", "time": "19:00", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 14, "stage": "GROUP", "group": "B", "round": 2, "homeTeamId": 7, "awayTeamId": 8, "date": "2025-01-04", "time": "20:30", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 6, "stage": "GROUP", "group": "A", "round": 3,
+      "homeTeamId": 1, "awayTeamId": 5, "date": "2025-01-03", "time": "19:00",
+      "stadium": "", "homeScore": 0, "awayScore": 3, "status": "FINISHED" },
 
-    { "id": 15, "stage": "GROUP", "group": "B", "round": 3, "homeTeamId": 6, "awayTeamId": 9, "date": "2025-01-06", "time": "19:00", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 16, "stage": "GROUP", "group": "B", "round": 3, "homeTeamId": 10, "awayTeamId": 8, "date": "2025-01-06", "time": "20:30", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 7, "stage": "GROUP", "group": "A", "round": 4,
+      "homeTeamId": 3, "awayTeamId": 4, "date": "2025-01-04", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
 
-    { "id": 17, "stage": "GROUP", "group": "B", "round": 4, "homeTeamId": 6, "awayTeamId": 8, "date": "2025-01-08", "time": "19:00", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 18, "stage": "GROUP", "group": "B", "round": 4, "homeTeamId": 9, "awayTeamId": 7, "date": "2025-01-08", "time": "20:30", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 8, "stage": "GROUP", "group": "A", "round": 4,
+      "homeTeamId": 2, "awayTeamId": 5, "date": "2025-01-04", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
 
-    { "id": 19, "stage": "GROUP", "group": "B", "round": 5, "homeTeamId": 6, "awayTeamId": 7, "date": "2025-01-10", "time": "19:00", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 20, "stage": "GROUP", "group": "B", "round": 5, "homeTeamId": 9, "awayTeamId": 10, "date": "2025-01-10", "time": "20:30", "stadium": "Sân B", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 9, "stage": "GROUP", "group": "A", "round": 5,
+      "homeTeamId": 5, "awayTeamId": 4, "date": "2025-01-05", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
 
-    { "id": 21, "stage": "SF", "code": "SF1", "name": "Bán kết 1", "homeFrom": "Nhất A", "awayFrom": "Nhì B", "homeTeamId": null, "awayTeamId": null, "date": "2025-01-13", "time": "19:00", "stadium": "Sân trung tâm", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
-    { "id": 22, "stage": "SF", "code": "SF2", "name": "Bán kết 2", "homeFrom": "Nhất B", "awayFrom": "Nhì A", "homeTeamId": null, "awayTeamId": null, "date": "2025-01-13", "time": "21:00", "stadium": "Sân trung tâm", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    { "id": 10, "stage": "GROUP", "group": "A", "round": 5,
+      "homeTeamId": 1, "awayTeamId": 2, "date": "2025-01-05", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
 
-    { "id": 23, "stage": "THIRD", "code": "TP", "name": "Tranh hạng 3", "homeFrom": "Thua SF1", "awayFrom": "Thua SF2", "homeTeamId": null, "awayTeamId": null, "date": "2025-01-15", "time": "19:00", "stadium": "Sân trung tâm", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+    /* ----------------------------- BẢNG B ----------------------------- */
 
-    { "id": 24, "stage": "FINAL", "code": "F", "name": "Chung kết", "homeFrom": "Thắng SF1", "awayFrom": "Thắng SF2", "homeTeamId": null, "awayTeamId": null, "date": "2025-01-15", "time": "21:00", "stadium": "Sân trung tâm", "homeScore": null, "awayScore": null, "status": "SCHEDULED" }
+    { "id": 11, "stage": "GROUP", "group": "B", "round": 1,
+      "homeTeamId": 6, "awayTeamId": 8, "date": "2025-01-01", "time": "19:00",
+      "stadium": "", "homeScore": 4, "awayScore": 2, "status": "FINISHED" },
+
+    { "id": 12, "stage": "GROUP", "group": "B", "round": 1,
+      "homeTeamId": 7, "awayTeamId": 9, "date": "2025-01-01", "time": "19:00",
+      "stadium": "", "homeScore": 5, "awayScore": 0, "status": "FINISHED" },
+
+    { "id": 13, "stage": "GROUP", "group": "B", "round": 2,
+      "homeTeamId": 8, "awayTeamId": 10, "date": "2025-01-02", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+
+    { "id": 14, "stage": "GROUP", "group": "B", "round": 2,
+      "homeTeamId": 6, "awayTeamId": 9, "date": "2025-01-02", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+
+    { "id": 15, "stage": "GROUP", "group": "B", "round": 3,
+      "homeTeamId": 8, "awayTeamId": 7, "date": "2025-01-03", "time": "19:00",
+      "stadium": "", "homeScore": 3, "awayScore": 8, "status": "FINISHED" },
+
+    { "id": 16, "stage": "GROUP", "group": "B", "round": 3,
+      "homeTeamId": 6, "awayTeamId": 10, "date": "2025-01-03", "time": "19:00",
+      "stadium": "", "homeScore": 5, "awayScore": 5, "status": "FINISHED" },
+
+    { "id": 17, "stage": "GROUP", "group": "B", "round": 4,
+      "homeTeamId": 8, "awayTeamId": 9, "date": "2025-01-04", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+
+    { "id": 18, "stage": "GROUP", "group": "B", "round": 4,
+      "homeTeamId": 7, "awayTeamId": 10, "date": "2025-01-04", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+
+    { "id": 19, "stage": "GROUP", "group": "B", "round": 5,
+      "homeTeamId": 6, "awayTeamId": 7, "date": "2025-01-05", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
+
+    { "id": 20, "stage": "GROUP", "group": "B", "round": 5,
+      "homeTeamId": 10, "awayTeamId": 9, "date": "2025-01-05", "time": "19:00",
+      "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" }
   ]
 }
