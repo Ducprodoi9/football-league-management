@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin giải đấu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Admin giải đấu</div>
+  <nav class="nav">
+    <a href="index.html">Trang xem</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="card">
+    <h2>Cấu hình GitHub</h2>
+    <p style="font-size:13px;margin-bottom:8px;">
+      Repo: <strong>Ducprodoi9/football-league-management</strong> – branch: <strong>main</strong>
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+      <input id="githubToken" type="password" placeholder="Nhập GitHub Personal Access Token" style="flex:1;padding:6px 8px;border-radius:6px;border:1px solid #cbd5e1;font-size:13px;">
+      <button id="btn-load" class="tab-button active" style="border-radius:6px;">Tải dữ liệu</button>
+      <button id="btn-commit" class="tab-button" style="border-radius:6px;">Lưu & commit data.json</button>
+    </div>
+    <p style="font-size:12px;color:#b91c1c;margin-top:6px;">
+      ⚠ Token chỉ nên dùng cho repo này, không chia sẻ cho ai khác.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Danh sách trận đấu</h2>
+    <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+      <select id="filter-stage" style="padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;font-size:13px;">
+        <option value="ALL">Tất cả</option>
+        <option value="GROUP-A">Vòng bảng - Bảng A</option>
+        <option value="GROUP-B">Vòng bảng - Bảng B</option>
+        <option value="SF">Bán kết</option>
+        <option value="THIRD">Tranh hạng 3</option>
+        <option value="FINAL">Chung kết</option>
+      </select>
+      <select id="filter-round" style="padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;font-size:13px;">
+        <option value="ALL">Tất cả các vòng</option>
+        <option value="1">Vòng 1</option>
+        <option value="2">Vòng 2</option>
+        <option value="3">Vòng 3</option>
+        <option value="4">Vòng 4</option>
+        <option value="5">Vòng 5</option>
+      </select>
+    </div>
+    <div id="match-list"></div>
+  </section>
+
+  <section class="card">
+    <h2>Chi tiết / Chỉnh sửa trận</h2>
+    <div id="edit-none" style="font-size:13px;color:#6b7280;">
+      Chọn một trận bên trên để chỉnh sửa (click vào dòng trận).
+    </div>
+    <div id="edit-form" style="display:none;">
+      <div style="margin-bottom:6px;font-size:14px;">
+        <strong id="edit-title"></strong>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;font-size:13px;">
+        <div>
+          <label>Đội chủ nhà</label><br>
+          <input id="edit-home" type="text" disabled style="width:100%;padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;">
+        </div>
+        <div>
+          <label>Đội khách</label><br>
+          <input id="edit-away" type="text" disabled style="width:100%;padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;">
+        </div>
+        <div>
+          <label>Bàn chủ nhà</label><br>
+          <input id="edit-homeScore" type="number" min="0" style="width:100%;padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;">
+        </div>
+        <div>
+          <label>Bàn khách</label><br>
+          <input id="edit-awayScore" type="number" min="0" style="width:100%;padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;">
+        </div>
+        <div>
+          <label>Ngày (YYYY-MM-DD)</label><br>
+          <input id="edit-date" type="text" style="width:100%;padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;">
+        </div>
+        <div>
+          <label>Giờ (HH:MM)</label><br>
+          <input id="edit-time" type="text" style="width:100%;padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;">
+        </div>
+        <div>
+          <label>Sân</label><br>
+          <input id="edit-stadium" type="text" style="width:100%;padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;">
+        </div>
+        <div>
+          <label>Trạng thái</label><br>
+          <select id="edit-status" style="width:100%;padding:4px 6px;border-radius:6px;border:1px solid #cbd5e1;">
+            <option value="SCHEDULED">Chưa đá</option>
+            <option value="FINISHED">Đã đá xong</option>
+          </select>
+        </div>
+      </div>
+      <button id="btn-apply" class="tab-button active" style="margin-top:10px;border-radius:6px;">Lưu thay đổi (cục bộ)</button>
+      <p style="font-size:12px;color:#6b7280;margin-top:4px;">
+        Sau khi lưu cục bộ xong, bấm <strong>"Lưu & commit data.json"</strong> phía trên để đẩy lên GitHub.
+      </p>
+    </div>
+  </section>
+</main>
+
+<script>
+  const OWNER = "Ducprodoi9";
+  const REPO = "football-league-management";
+  const BRANCH = "main";
+  let DATA = null;
+  let TEAMS_BY_ID = {};
+  let SELECTED_MATCH_ID = null;
+
+  async function loadDataLocal() {
+    const res = await fetch("data.json?" + Date.now());
+    DATA = await res.json();
+    TEAMS_BY_ID = {};
+    DATA.teams.forEach(t => TEAMS_BY_ID[t.id] = t);
+    renderMatchList();
+    alert("Đã tải data.json từ GitHub Pages.");
+  }
+
+  function renderMatchList() {
+    const listEl = document.getElementById("match-list");
+    const stageFilter = document.getElementById("filter-stage").value;
+    const roundFilter = document.getElementById("filter-round").value;
+
+    let matches = DATA.matches.slice();
+
+    if (stageFilter === "GROUP-A") {
+      matches = matches.filter(m => m.stage === "GROUP" && m.group === "A");
+    } else if (stageFilter === "GROUP-B") {
+      matches = matches.filter(m => m.stage === "GROUP" && m.group === "B");
+    } else if (["SF","THIRD","FINAL"].includes(stageFilter)) {
+      matches = matches.filter(m => m.stage === stageFilter);
+    }
+
+    if (roundFilter !== "ALL") {
+      const r = Number(roundFilter);
+      matches = matches.filter(m => m.round === r);
+    }
+
+    matches.sort((a,b) => a.id - b.id);
+
+    let html = "";
+    matches.forEach(m => {
+      const home = TEAMS_BY_ID[m.homeTeamId] || {};
+      const away = TEAMS_BY_ID[m.awayTeamId] || {};
+      const label = m.stage === "GROUP"
+        ? `Vòng ${m.round} - Bảng ${m.group}`
+        : (m.name || m.stage);
+      const score = (m.homeScore === null || m.awayScore === null)
+        ? "Chưa đá"
+        : `${m.homeScore} : ${m.awayScore}`;
+      html += `
+        <div class="match-card" data-id="${m.id}">
+          <div>
+            <div class="match-teams">
+              <span class="team-name">${home.shortName || m.homeFrom || "?"}</span>
+              <span class="vs">vs</span>
+              <span class="team-name">${away.shortName || m.awayFrom || "?"}</span>
+            </div>
+            <div class="match-meta">${m.date} • ${m.time} • ${m.stadium || ""}</div>
+            <div class="match-meta">${label}</div>
+          </div>
+          <div class="score-badge ${m.status === "FINISHED" ? "score-finished" : "score-scheduled"}">${score}</div>
+        </div>
+      `;
+    });
+
+    if (!html) {
+      html = `<span class="badge-placeholder">Không có trận nào với bộ lọc hiện tại</span>`;
+    }
+
+    listEl.innerHTML = html;
+
+    listEl.querySelectorAll(".match-card").forEach(el => {
+      el.addEventListener("click", () => {
+        const id = Number(el.dataset.id);
+        openEditForm(id);
+      });
+    });
+  }
+
+  function openEditForm(matchId) {
+    SELECTED_MATCH_ID = matchId;
+    const m = DATA.matches.find(x => x.id === matchId);
+    if (!m) return;
+    const home = TEAMS_BY_ID[m.homeTeamId];
+    const away = TEAMS_BY_ID[m.awayTeamId];
+
+    document.getElementById("edit-none").style.display = "none";
+    document.getElementById("edit-form").style.display = "block";
+
+    document.getElementById("edit-title").textContent =
+      `Trận ID #${m.id} – ${m.stage === "GROUP" ? "Vòng " + m.round + " - Bảng " + m.group : (m.name || m.stage)}`;
+
+    document.getElementById("edit-home").value = home ? home.name : (m.homeFrom || "");
+    document.getElementById("edit-away").value = away ? away.name : (m.awayFrom || "");
+    document.getElementById("edit-homeScore").value = m.homeScore !== null ? m.homeScore : "";
+    document.getElementById("edit-awayScore").value = m.awayScore !== null ? m.awayScore : "";
+    document.getElementById("edit-date").value = m.date || "";
+    document.getElementById("edit-time").value = m.time || "";
+    document.getElementById("edit-stadium").value = m.stadium || "";
+    document.getElementById("edit-status").value = m.status || "SCHEDULED";
+  }
+
+  function applyEdit() {
+    if (SELECTED_MATCH_ID == null) {
+      alert("Chưa chọn trận.");
+      return;
+    }
+    const m = DATA.matches.find(x => x.id === SELECTED_MATCH_ID);
+    if (!m) return;
+
+    const homeScoreVal = document.getElementById("edit-homeScore").value;
+    const awayScoreVal = document.getElementById("edit-awayScore").value;
+
+    m.homeScore = homeScoreVal === "" ? null : Number(homeScoreVal);
+    m.awayScore = awayScoreVal === "" ? null : Number(awayScoreVal);
+    m.date = document.getElementById("edit-date").value;
+    m.time = document.getElementById("edit-time").value;
+    m.stadium = document.getElementById("edit-stadium").value;
+    m.status = document.getElementById("edit-status").value;
+
+    renderMatchList();
+    alert("Đã lưu thay đổi cục bộ (chưa commit lên GitHub).");
+  }
+
+  async function commitDataJson() {
+    if (!DATA) {
+      alert("Chưa có dữ liệu. Bấm 'Tải dữ liệu' trước.");
+      return;
+    }
+    const token = document.getElementById("githubToken").value.trim();
+    if (!token) {
+      alert("Nhập GitHub token trước.");
+      return;
+    }
+
+    if (!confirm("Commit data.json mới lên GitHub?")) return;
+
+    try {
+      const getRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/data.json?ref=${BRANCH}`, {
+        headers: {
+          "Authorization": `token ${token}`,
+          "Accept": "application/vnd.github+json"
+        }
+      });
+
+      let sha = null;
+      if (getRes.ok) {
+        const meta = await getRes.json();
+        sha = meta.sha;
+      } else if (getRes.status !== 404) {
+        const err = await getRes.json();
+        alert("Lỗi lấy thông tin data.json: " + (err.message || getRes.status));
+        return;
+      }
+
+      const contentString = JSON.stringify(DATA, null, 2);
+      const base64Content = btoa(unescape(encodeURIComponent(contentString)));
+
+      const body = {
+        message: "Update data.json via admin.html",
+        content: base64Content,
+        branch: BRANCH
+      };
+      if (sha) body.sha = sha;
+
+      const putRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/data.json`, {
+        method: "PUT",
+        headers: {
+          "Authorization": `token ${token}`,
+          "Accept": "application/vnd.github+json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (!putRes.ok) {
+        const err = await putRes.json();
+        alert("Lỗi commit: " + (err.message || putRes.status));
+        return;
+      }
+
+      alert("Đã commit data.json lên GitHub thành công. Đợi GitHub Pages build xong là trang public sẽ cập nhật.");
+    } catch (e) {
+      console.error(e);
+      alert("Lỗi kết nối GitHub: " + e.message);
+    }
+  }
+
+  document.getElementById("btn-load").addEventListener("click", loadDataLocal);
+  document.getElementById("btn-commit").addEventListener("click", commitDataJson);
+  document.getElementById("filter-stage").addEventListener("change", () => { if (DATA) renderMatchList(); });
+  document.getElementById("filter-round").addEventListener("change", () => { if (DATA) renderMatchList(); });
+  document.getElementById("btn-apply").addEventListener("click", applyEdit);
+</script>
+</body>
+</html>
