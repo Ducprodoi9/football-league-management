@@ -14,7 +14,6 @@
   ],
 
   "matches": [
-    /* ----------------------------- BẢNG A ----------------------------- */
 
     { "id": 1, "stage": "GROUP", "group": "A", "round": 1,
       "homeTeamId": 1, "awayTeamId": 3, "date": "2025-01-01", "time": "19:00",
@@ -56,7 +55,6 @@
       "homeTeamId": 1, "awayTeamId": 2, "date": "2025-01-05", "time": "19:00",
       "stadium": "", "homeScore": null, "awayScore": null, "status": "SCHEDULED" },
 
-    /* ----------------------------- BẢNG B ----------------------------- */
 
     { "id": 11, "stage": "GROUP", "group": "B", "round": 1,
       "homeTeamId": 6, "awayTeamId": 8, "date": "2025-01-01", "time": "19:00",
