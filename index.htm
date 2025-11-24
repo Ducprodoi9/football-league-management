@@ -1,39 +1,87 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Quản lý giải đấu bóng đá</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Giải bóng đá 10 đội</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<header class="topbar">
+  <div class="brand">Giải bóng đá 10 đội</div>
+  <nav class="nav">
+    <a href="#groups">Bảng đấu</a>
+    <a href="#schedule">Lịch thi đấu</a>
+    <a href="#standings">Bảng xếp hạng</a>
+    <a href="#knockout">Vòng knock-out</a>
+  </nav>
+</header>
 
-<h1>Giải đấu bóng đá – 10 đội</h1>
+<main class="container">
+  <section id="groups" class="card">
+    <h2>Bảng đấu</h2>
+    <div class="grid-2">
+      <div>
+        <h3>Bảng A</h3>
+        <div id="group-A" class="team-list"></div>
+      </div>
+      <div>
+        <h3>Bảng B</h3>
+        <div id="group-B" class="team-list"></div>
+      </div>
+    </div>
+  </section>
 
-<div class="container">
-
-    <h2>Bảng A</h2>
-    <div id="groupA" class="group"></div>
-
-    <h2>Bảng B</h2>
-    <div id="groupB" class="group"></div>
-
+  <section id="schedule" class="card">
     <h2>Lịch thi đấu vòng bảng</h2>
-    <div id="schedule"></div>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="schedule-A">Bảng A</button>
+      <button class="tab-button" data-tab="schedule-B">Bảng B</button>
+    </div>
+    <div id="schedule-A" class="tab-content active"></div>
+    <div id="schedule-B" class="tab-content"></div>
+  </section>
 
+  <section id="standings" class="card">
     <h2>Bảng xếp hạng</h2>
-    <div id="rankingA"></div>
-    <div id="rankingB"></div>
+    <div class="grid-2">
+      <div>
+        <h3>Bảng A</h3>
+        <table class="table" id="ranking-A">
+          <thead>
+            <tr>
+              <th>Đội</th><th>Tr</th><th>T</th><th>H</th><th>B</th><th>BT</th><th>BB</th><th>HS</th><th>Đ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Bảng B</h3>
+        <table class="table" id="ranking-B">
+          <thead>
+            <tr>
+              <th>Đội</th><th>Tr</th><th>T</th><th>H</th><th>B</th><th>BT</th><th>BB</th><th>HS</th><th>Đ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
-    <h2>Bán kết</h2>
-    <div id="semifinals"></div>
+  <section id="knockout" class="card">
+    <h2>Vòng knock-out</h2>
+    <div id="sf-list"></div>
+    <h3>Tranh hạng 3</h3>
+    <div id="third-match"></div>
+    <h3>Chung kết</h3>
+    <div id="final-match"></div>
+  </section>
+</main>
 
-    <h2>Tranh hạng 3</h2>
-    <div id="thirdPlace"></div>
-
-    <h2>Chung kết</h2>
-    <div id="finalMatch"></div>
-
-</div>
+<footer class="footer">
+  <small>Quản lý giải đấu bởi Ducprodoi9</small>
+</footer>
 
 <script src="script.js"></script>
 </body>
