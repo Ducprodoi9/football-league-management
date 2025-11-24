@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.group, #schedule, #rankingA, #rankingB, #semifinals, #thirdPlace, #finalMatch {
+    padding: 10px 0;
+}
+
+.match {
+    margin: 5px 0;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
