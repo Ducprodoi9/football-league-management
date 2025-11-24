@@ -1,6 +1,6 @@
 {
   "teams": [
-    { "id": 1, "name": "FC QUẾ TỶ", "shortName": "QUE", "group": "A" },
+    { "id": 1, "name": "FC QUÊ TÝ", "shortName": "QUE", "group": "A" },
     { "id": 2, "name": "FC CLEAN ALL", "shortName": "CLA", "group": "A" },
     { "id": 3, "name": "FC STAR", "shortName": "STA", "group": "A" },
     { "id": 4, "name": "FC ANH EM", "shortName": "AE", "group": "A" },
